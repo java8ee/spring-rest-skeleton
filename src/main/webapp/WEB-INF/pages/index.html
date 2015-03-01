@@ -12,12 +12,12 @@
                     document.getElementById('data').innerText += request.responseText;
                 }
             };
-            request.call(null);
+            request.send(null);
         }
     </script>
 </head>
 <body>
-    <button title="Load object" onclick="load()" />
+    <button onclick="load()">Load object</button>
     <div id="data" />
 </body>
 </html>
