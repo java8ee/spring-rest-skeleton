@@ -1,2 +1,2 @@
 # spring-rest-skeleton
-Create empty repository
+Spring REST Skeleton
