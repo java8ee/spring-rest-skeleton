@@ -14,10 +14,24 @@
             };
             request.send(null);
         }
+        function loadUser(userId) {
+            var request = new XMLHttpRequest();
+            request.open('GET', '/demo/' + userId);
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    document.getElementById('userData').innerText += request.responseText;
+                }
+            };
+            request.send(null);
+        }
     </script>
 </head>
 <body>
     <button onclick="load()">Load object</button>
-    <div id="data" />
+    <div id="data"></div>
+
+    <input id="userId" type="number" />
+    <button onclick="loadUser(userId.value)">Load user</button>
+    <div id="userData"></div>
 </body>
 </html>
