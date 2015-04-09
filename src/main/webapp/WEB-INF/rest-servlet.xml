@@ -8,11 +8,5 @@
               http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <context:component-scan base-package="ss.rest" />
-    <mvc:resources mapping="/**" location="/WEB-INF/pages/" />
     <mvc:annotation-driven />
-
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/" />
-        <property name="suffix" value=".html" />
-    </bean>
 </beans>

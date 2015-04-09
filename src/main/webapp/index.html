@@ -6,7 +6,7 @@
     <script>
         function load() {
             var request = new XMLHttpRequest();
-            request.open('GET', '/user/');
+            request.open('GET', '/rest/user/');
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
                     document.getElementById('data').innerText += request.responseText;
@@ -16,7 +16,7 @@
         }
         function loadUser(userId) {
             var request = new XMLHttpRequest();
-            request.open('GET', '/user/' + userId);
+            request.open('GET', '/rest/user/' + userId);
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
                     document.getElementById('userData').innerText += request.responseText;
