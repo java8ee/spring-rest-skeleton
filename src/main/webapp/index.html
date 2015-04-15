@@ -36,6 +36,11 @@
             request.setRequestHeader('Content-Type', 'application/json');
             request.send('{"id":' + userId + ',"name":"' + userName + '"}');
         }
+        function deleteUser(userId) {
+            var request = new XMLHttpRequest();
+            request.open('DELETE', '/rest/user/' + userId);
+            request.send(null);
+        }
     </script>
 </head>
 <body>
@@ -55,5 +60,9 @@
     <input id="currUserId" type="number" />
     <input id="currUserName" type="text" />
     <button onclick="updateUser(currUserId.value, currUserName.value)">Update user</button>
+    <br />
+
+    <input id="delUserId" type="number" />
+    <button onclick="deleteUser(delUserId.value)">Delete user</button>
 </body>
 </html>

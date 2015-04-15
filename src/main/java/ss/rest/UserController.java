@@ -48,4 +48,10 @@ public class UserController {
             users.put(id, user);
         }
     }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable int id) {
+        users.remove(id);
+    }
 }
