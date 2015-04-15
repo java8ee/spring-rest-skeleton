@@ -39,4 +39,13 @@ public class UserController {
 
         return user;
     }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUser(@RequestBody User user) {
+        int id = user.getId();
+        if (users.containsKey(id)) {
+            users.put(id, user);
+        }
+    }
 }

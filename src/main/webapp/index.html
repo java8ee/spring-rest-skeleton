@@ -30,17 +30,30 @@
             request.setRequestHeader('Content-Type', 'application/json');
             request.send('{"id":0,"name":"' + userName + '"}');
         }
+        function updateUser(userId, userName) {
+            var request = new XMLHttpRequest();
+            request.open('PUT', '/rest/user/');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send('{"id":' + userId + ',"name":"' + userName + '"}');
+        }
     </script>
 </head>
 <body>
     <button onclick="load()">Load object</button>
     <div id="data"></div>
+    <br />
 
     <input id="userId" type="number" />
     <button onclick="loadUser(userId.value)">Load user</button>
     <div id="userData"></div>
+    <br />
 
     <input id="userName" type="text" />
     <button onclick="addUser(userName.value)">Add user</button>
+    <br />
+
+    <input id="currUserId" type="number" />
+    <input id="currUserName" type="text" />
+    <button onclick="updateUser(currUserId.value, currUserName.value)">Update user</button>
 </body>
 </html>
