@@ -1,9 +1,7 @@
 package ss.rest;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import ss.domain.User;
 
 import java.util.Collection;
@@ -30,5 +28,15 @@ public class UserController {
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable int id) {
         return users.get(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public User addUser(@RequestBody User user) {
+        int id = users.size() + 1;
+        user.setId(id);
+        users.put(id, user);
+
+        return user;
     }
 }

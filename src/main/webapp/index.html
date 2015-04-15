@@ -24,6 +24,12 @@
             };
             request.send(null);
         }
+        function addUser(userName) {
+            var request = new XMLHttpRequest();
+            request.open('POST', '/rest/user/');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send('{"id":0,"name":"' + userName + '"}');
+        }
     </script>
 </head>
 <body>
@@ -33,5 +39,8 @@
     <input id="userId" type="number" />
     <button onclick="loadUser(userId.value)">Load user</button>
     <div id="userData"></div>
+
+    <input id="userName" type="text" />
+    <button onclick="addUser(userName.value)">Add user</button>
 </body>
 </html>
