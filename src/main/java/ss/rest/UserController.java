@@ -45,23 +45,15 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@PathVariable int id, @RequestBody UserWrapper userWrapper) {
         User user = users.get(id);
-        if (user != null) {
-            for (Map.Entry<String, Object> entry : userWrapper.getMap().entrySet()) {
-                switch (entry.getKey()) {
-                    case "id" :
-                        int newId = (Integer) entry.getValue();
-                        user.setId(newId);
-                        users.remove(id);
-                        id = newId;
-                        break;
-                    case "name" :
-                        user.setName((String) entry.getValue());
-                        break;
-                }
+        if (user == null) {
+            throw new IllegalArgumentException("User with ID=" + id + " doesn't exist");
+        } else {
+            int newId = userWrapper.fill(id, user);
+            if (id != newId) {
+                users.remove(id);
+                id = newId;
             }
             users.put(id, user);
-        } else {
-            throw new IllegalArgumentException("ID=" + id + "doesn't exist");
         }
     }
 

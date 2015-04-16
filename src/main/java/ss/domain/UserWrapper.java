@@ -16,7 +16,18 @@ public class UserWrapper extends User {
         super.setName(name);
     }
 
-    public Map<String, Object> getMap() {
-        return map;
+    public int fill(int id, User user) {
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            switch (entry.getKey()) {
+                case "id" :
+                    id = (Integer) entry.getValue();
+                    user.setId(id);
+                    break;
+                case "name" :
+                    user.setName((String) entry.getValue());
+                    break;
+            }
+        }
+        return id;
     }
 }
