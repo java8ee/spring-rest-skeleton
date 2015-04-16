@@ -9,59 +9,61 @@
             request.open('GET', '/rest/user/');
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
-                    document.getElementById('data').innerText += request.responseText;
+                    document.getElementById('data').innerText = request.responseText;
                 }
             };
             request.send(null);
         }
-        function loadUser(userId) {
+        function loadUser(id) {
             var request = new XMLHttpRequest();
-            request.open('GET', '/rest/user/' + userId);
+            request.open('GET', '/rest/user/' + id);
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
-                    document.getElementById('userData').innerText += request.responseText;
+                    document.getElementById('userData').innerText = request.responseText;
                 }
             };
             request.send(null);
         }
-        function addUser(userName) {
+        function addUser(name) {
             var request = new XMLHttpRequest();
             request.open('POST', '/rest/user/');
             request.setRequestHeader('Content-Type', 'application/json');
-            request.send('{"id":0,"name":"' + userName + '"}');
+            request.send('{"name":"' + name + '"}');
         }
-        function updateUser(userId, userName) {
+        function updateUser(oldId, id, name) {
             var request = new XMLHttpRequest();
-            request.open('PUT', '/rest/user/');
+            request.open('PUT', '/rest/user/' + oldId);
             request.setRequestHeader('Content-Type', 'application/json');
-            request.send('{"id":' + userId + ',"name":"' + userName + '"}');
+            request.send('{"id":' + id + ',"name":"' + name + '"}');
         }
-        function deleteUser(userId) {
+        function deleteUser(id) {
             var request = new XMLHttpRequest();
-            request.open('DELETE', '/rest/user/' + userId);
+            request.open('DELETE', '/rest/user/' + id);
             request.send(null);
         }
     </script>
 </head>
 <body>
-    <button onclick="load()">Load object</button>
+    <h1>GET User's list</h1>
     <div id="data"></div>
-    <br />
+    <button onclick="load()">Load user's list</button>
 
-    <input id="userId" type="number" />
+    <h1>GET User by ID</h1>
+    <label for="userId">User id</label><input id="userId" type="number" />
     <button onclick="loadUser(userId.value)">Load user</button>
     <div id="userData"></div>
-    <br />
 
-    <input id="userName" type="text" />
+    <h1>POST new User</h1>
+    <label for="userName">User name:</label><input id="userName" type="text" />
     <button onclick="addUser(userName.value)">Add user</button>
-    <br />
 
-    <input id="currUserId" type="number" />
-    <input id="currUserName" type="text" />
-    <button onclick="updateUser(currUserId.value, currUserName.value)">Update user</button>
-    <br />
+    <h1>PUT User details by ID</h1>
+    <label for="currUserId">User id:</label><input id="oldUserId" type="number" />
+    <label for="currUserId">New User id:</label><input id="currUserId" type="number" />
+    <label for="currUserName">New User name:</label><input id="currUserName" type="text" />
+    <button onclick="updateUser(oldUserId.value, currUserId.value, currUserName.value)">Update user</button>
 
+    <h1>DELETE User by ID</h1>
     <input id="delUserId" type="number" />
     <button onclick="deleteUser(delUserId.value)">Delete user</button>
 </body>
